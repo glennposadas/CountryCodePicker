@@ -8,9 +8,20 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+  
   @IBOutlet weak var button: UIButton!
-
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    // Set current country:
+    guard let currentCountry = Country.getCurrentCountry() else {
+      return
+    }
+    
+    didSelectCountry(currentCountry)
+  }
+  
   @IBAction func selectCountry(_ sender: Any) {
     let cv = DialCountriesController(locale: .current)
     cv.delegate = self
